@@ -1,3 +1,9 @@
+# HOW TO RUN
+
+- npm install
+- npx prisma db push
+- npm run dev
+
 # Insomnia Labs Frontend Developer Take-Home Test
 
 Thank you for your interest in the Frontend Developer position at our company. As part of our hiring process, we would like you to complete a take-home test to assess your skills in building a fully-functional frontend application using ReactJs/NextJs.
@@ -7,6 +13,7 @@ Thank you for your interest in the Frontend Developer position at our company. A
 For this assessmennt, we want you to create a simple application with two pages using ReactJs/NextJs. Requirements are stated as follows:
 
 ### First Page: Bitcoin (BTC) Price Index page
+
 Build a page that displays the current BTC price index, as provided by this [Rest API](https://api.coindesk.com/v1/bpi/currentprice.json)
 
 - Page should contain price details of USD, GBP and EUR currencies, refreshed at a default interval of 5 seconds.
@@ -52,13 +59,14 @@ Here's a sample of the data provided by the API:
 ```
 
 ### Second Page: NFT List page
+
 We want you to build a simple page that lists the NFTs owned by a connected user's wallet.
+
 - Page should display NFT basic details as well as NFT metadata (if available)
   - This includes (but not limited to): name, description, token id, image, smart contract address, etc
 - That's all!
 
 If you'd need testnet NFTs for testing, do let us know. Also, please feel free to use a style library of your choice (Material UI, Tailwind CSS, etc)
-
 
 ## Submission
 
