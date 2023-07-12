@@ -4,8 +4,6 @@
 - npx prisma db push
 - npm run dev
 
-NOTE: There is a Maximum update depth exceeded warning appearing in the console. This is due to a current bug with Zustand and NextJS. It is not affecting the functionality or speed of the app.
-
 # Insomnia Labs Frontend Developer Take-Home Test
 
 Thank you for your interest in the Frontend Developer position at our company. As part of our hiring process, we would like you to complete a take-home test to assess your skills in building a fully-functional frontend application using ReactJs/NextJs.

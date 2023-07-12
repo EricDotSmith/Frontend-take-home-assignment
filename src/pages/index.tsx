@@ -3,9 +3,9 @@ import { api } from "~/utils/api";
 import { PageContainer } from "../components/Page";
 import PageLeftBar from "../components/PageLeftBar";
 import PageBottomBar from "../components/PageBottomBar";
-import useStore from "~/utils/store";
 import usePriceIndexPageStore from "~/store/priceIndexPageStore";
 import PageTopBar from "~/components/rates/PageTopBar";
+import NoSSRWrapper from "~/components/NoSsrWrapper";
 
 export default function PriceIndexPage() {
   const priceIndexPageStore = usePriceIndexPageStore((state) => ({
@@ -34,7 +34,11 @@ export default function PriceIndexPage() {
       <PageContainer
         pageBottomBar={<PageBottomBar />}
         pageLeftBar={<PageLeftBar />}
-        pageTopBar={<PageTopBar />}
+        pageTopBar={
+          <NoSSRWrapper>
+            <PageTopBar />
+          </NoSSRWrapper>
+        }
         path="/"
       >
         {hello.isLoading ? (

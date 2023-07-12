@@ -1,10 +1,9 @@
 import usePriceIndexPageStore from "~/store/priceIndexPageStore";
-import useStore from "~/utils/store";
 import Toggle from "../Toggle";
 import RefreshIntervalList from "../RefreshIntervalList";
 
 const PageTopBar: React.FC = () => {
-  const priceIndexPageStore = useStore(usePriceIndexPageStore, (state) => ({
+  const priceIndexPageStore = usePriceIndexPageStore((state) => ({
     eurToggled: state.eurToggled,
     gbpToggled: state.gbpToggled,
     usdToggled: state.usdToggled,
