@@ -3,10 +3,25 @@ import { api } from "~/utils/api";
 import { PageContainer } from "../components/Page";
 import PageLeftBar from "../components/PageLeftBar";
 import PageBottomBar from "../components/PageBottomBar";
+import useStore from "~/utils/store";
+import usePriceIndexPageStore from "~/store/priceIndexPageStore";
+import PageTopBar from "~/components/rates/PageTopBar";
 
-export default function Home() {
+export default function PriceIndexPage() {
+  const priceIndexPageStore = usePriceIndexPageStore((state) => ({
+    eurToggled: state.eurToggled,
+    gbpToggled: state.gbpToggled,
+    usdToggled: state.usdToggled,
+    refreshInterval: state.refreshInterval,
+  }));
+
+  if (!priceIndexPageStore) return null;
+
+  const { eurToggled, gbpToggled, usdToggled, refreshInterval } =
+    priceIndexPageStore;
+
   const hello = api.btcPriceIndex.currentPriceIndex.useQuery(undefined, {
-    // refetchInterval: 1000,
+    refetchInterval: refreshInterval,
   });
 
   return (
@@ -19,7 +34,7 @@ export default function Home() {
       <PageContainer
         pageBottomBar={<PageBottomBar />}
         pageLeftBar={<PageLeftBar />}
-        pageTopBar={<>top</>}
+        pageTopBar={<PageTopBar />}
         path="/"
       >
         {hello.isLoading ? (
@@ -27,7 +42,23 @@ export default function Home() {
         ) : hello.isError ? (
           hello.error.message
         ) : (
-          <div>{hello.data?.bpi.USD.rate}</div>
+          <div>
+            {eurToggled && (
+              <div>
+                <div>EUR</div>
+              </div>
+            )}
+            {gbpToggled && (
+              <div>
+                <div>GBP</div>
+              </div>
+            )}
+            {usdToggled && (
+              <div>
+                <div>USD</div>
+              </div>
+            )}
+          </div>
         )}
       </PageContainer>
     </>
