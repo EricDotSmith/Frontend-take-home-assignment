@@ -6,23 +6,23 @@ import PageBottomBar from "../components/PageBottomBar";
 import usePriceIndexPageStore from "~/store/priceIndexPageStore";
 import PageTopBar from "~/components/rates/PageTopBar";
 import NoSSRWrapper from "~/components/NoSsrWrapper";
+import RateCards from "~/components/rates/RateCards";
 
 export default function PriceIndexPage() {
   const priceIndexPageStore = usePriceIndexPageStore((state) => ({
-    eurToggled: state.eurToggled,
-    gbpToggled: state.gbpToggled,
-    usdToggled: state.usdToggled,
     refreshInterval: state.refreshInterval,
   }));
 
   if (!priceIndexPageStore) return null;
 
-  const { eurToggled, gbpToggled, usdToggled, refreshInterval } =
-    priceIndexPageStore;
+  const { refreshInterval } = priceIndexPageStore;
 
-  const hello = api.btcPriceIndex.currentPriceIndex.useQuery(undefined, {
-    refetchInterval: refreshInterval,
-  });
+  const bitcoinPriceIndexQuery = api.btcPriceIndex.currentPriceIndex.useQuery(
+    undefined,
+    {
+      refetchInterval: refreshInterval,
+    }
+  );
 
   return (
     <>
@@ -41,28 +41,12 @@ export default function PriceIndexPage() {
         }
         path="/"
       >
-        {hello.isLoading ? (
+        {bitcoinPriceIndexQuery.isLoading ? (
           "loading"
-        ) : hello.isError ? (
-          hello.error.message
+        ) : bitcoinPriceIndexQuery.isError ? (
+          bitcoinPriceIndexQuery.error.message
         ) : (
-          <div>
-            {eurToggled && (
-              <div>
-                <div>EUR</div>
-              </div>
-            )}
-            {gbpToggled && (
-              <div>
-                <div>GBP</div>
-              </div>
-            )}
-            {usdToggled && (
-              <div>
-                <div>USD</div>
-              </div>
-            )}
-          </div>
+          <RateCards data={bitcoinPriceIndexQuery.data} />
         )}
       </PageContainer>
     </>

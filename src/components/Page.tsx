@@ -39,7 +39,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
           style={{ minHeight: "100dvh" }}
         >
           <PageTopBar component={pageTopBar} />
-          <div className="pb-8">{children}</div>
+          <div className="px-4 py-4 pb-16">{children}</div>
           <PageBottomBar component={pageBottomBar} />
         </div>
       </div>
