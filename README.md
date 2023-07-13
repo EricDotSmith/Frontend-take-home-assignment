@@ -4,6 +4,8 @@
 - npx prisma db push
 - npm run dev
 
+NOTE: NFT Viewer is currently only setup on Sepolia testnet.
+
 # Insomnia Labs Frontend Developer Take-Home Test
 
 Thank you for your interest in the Frontend Developer position at our company. As part of our hiring process, we would like you to complete a take-home test to assess your skills in building a fully-functional frontend application using ReactJs/NextJs.
