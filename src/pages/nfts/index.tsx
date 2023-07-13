@@ -2,8 +2,14 @@ import Head from "next/head";
 import { PageContainer } from "~/components/Page";
 import PageBottomBar from "~/components/PageBottomBar";
 import PageLeftBar from "~/components/PageLeftBar";
+import { useAccount } from "wagmi";
+import NftPageContent from "~/components/nfts/NftPageContent";
+import NoSsrWrapper from "~/components/NoSsrWrapper";
+import PageTopBar from "~/components/nfts/PageTopBar";
 
-export default function Nfts() {
+export default function NftPage() {
+  const { address } = useAccount();
+
   return (
     <>
       <Head>
@@ -14,10 +20,16 @@ export default function Nfts() {
       <PageContainer
         pageBottomBar={<PageBottomBar />}
         pageLeftBar={<PageLeftBar />}
-        pageTopBar={<>top</>}
+        pageTopBar={<PageTopBar />}
         path="/"
       >
-        NFTs
+        <NoSsrWrapper>
+          {!address ? (
+            <div>Please connect a wallet to continue</div>
+          ) : (
+            <NftPageContent address={address} />
+          )}
+        </NoSsrWrapper>
       </PageContainer>
     </>
   );
